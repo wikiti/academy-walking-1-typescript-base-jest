@@ -24,5 +24,11 @@ describe("Cell", () => {
 
       expect(cell.isAlive()).toEqual(true);
     });
+    it("should not be alive if the cell dies", () => {
+      const cell = new Cell();
+      cell.die();
+
+      expect(cell.isAlive()).toEqual(false);
+    })
   });
 });

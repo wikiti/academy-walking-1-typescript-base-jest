@@ -16,4 +16,8 @@ export class Cell {
   public isDead(): boolean {
     return this.state === State.Dead;
   }
+
+  public isAlive() {
+    return true;
+  }
 }
