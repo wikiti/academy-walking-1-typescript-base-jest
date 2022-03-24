@@ -18,6 +18,6 @@ export class Cell {
   }
 
   public isAlive() {
-    return true;
+    return this.state === State.Alive;
   }
 }
