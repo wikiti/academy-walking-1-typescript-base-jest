@@ -29,6 +29,15 @@ describe("Mars rover", () => {
       rover.move();
       expect(rover["position"]).toEqual(Position.create(1, 0));
     });
+
+    it("should move forward facing west by one cell", () => {
+      const rover = new Robot({
+        direction: Direction.create("W"),
+        position: Position.create(1, 0),
+      });
+      rover.move();
+      expect(rover["position"]).toEqual(Position.create(0, 0));
+    });
   });
 
   describe("Turn left", () => {

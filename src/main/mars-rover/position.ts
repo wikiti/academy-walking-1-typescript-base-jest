@@ -12,4 +12,12 @@ export class Position {
   static create(X: number, Y: number) {
     return new Position(X, Y);
   }
+
+  top() {
+    return Position.create(this.X, this.Y + 1);
+  }
+
+  right() {
+    return Position.create(this.X + 1, this.Y);
+  }
 }

@@ -7,6 +7,10 @@ export class Direction {
     return this.direction;
   }
 
+  isEqual(other: Direction) {
+    return this.direction == other.direction;
+  }
+
   static create(side: DirectionSide) {
     return new Direction(side);
   }

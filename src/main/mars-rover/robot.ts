@@ -22,6 +22,11 @@ export class Robot {
   }
 
   move() {
-    this.position = Position.create(this.position.x(), this.position.y()+1)
+    if (this.direction.isEqual(Direction.create("N"))) {
+      this.position = this.position.top();
+      return;
+    }
+
+    this.position = this.position.right();
   }
 }
