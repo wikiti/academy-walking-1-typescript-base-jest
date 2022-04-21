@@ -6,4 +6,8 @@ export class Robot {
   constructor(direction: Direction) {
     this.direction = direction;
   }
+
+  turnLeft() {
+    this.direction = "W";
+  }
 }
