@@ -20,4 +20,8 @@ export class Robot {
   turnRight() {
     this.direction = Direction.right(this.direction);
   }
+
+  move() {
+    this.position = Position.create(this.position.x(), this.position.y()+1)
+  }
 }
