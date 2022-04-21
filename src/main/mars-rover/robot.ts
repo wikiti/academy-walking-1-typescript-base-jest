@@ -1,10 +1,16 @@
 import { Direction } from "./direction";
-
+import { Position } from "./position";
+type Options = {
+  direction: Direction;
+  position: Position;
+};
 export class Robot {
   private direction: Direction;
+  private position: Position;
 
-  constructor(direction: Direction) {
-    this.direction = direction;
+  constructor(options: Options) {
+    this.direction = options.direction;
+    this.position = options.position;
   }
 
   turnLeft() {
