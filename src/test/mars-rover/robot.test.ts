@@ -20,6 +20,13 @@ describe("Mars rover", () => {
 
       expect(rover["direction"]).toEqual("S");
     });
+
+    it("should turn left from south to east", () => {
+      const rover = new Robot("S");
+      rover.turnLeft();
+
+      expect(rover["direction"]).toEqual("E");
+    });
   });
 
 
