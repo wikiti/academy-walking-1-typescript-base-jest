@@ -1,10 +1,14 @@
 import { Robot } from "../../main/mars-rover/robot";
 import { Direction, DirectionSide } from "../../main/mars-rover/direction";
 import { Position } from "../../main/mars-rover/position";
+import { Surface } from "../../main/mars-rover/surface";
 
 describe("Mars rover", () => {
+  const surface = new Surface();
+
   it("should have a direction", () => {
     const rover = new Robot({
+      surface,
       direction: Direction.create("N"),
       position: Position.create(0, 0),
     });
@@ -12,35 +16,45 @@ describe("Mars rover", () => {
   });
 
   describe("Move", () => {
-    it("should move forward facing north by one cell", () => {
+    it.each([
+      {
+        direction: Direction.create("N"), from: Position.create(0, 0), to: Position.create(0, 1),
+      },
+      {
+        direction: Direction.create("E"), from: Position.create(0, 0), to: Position.create(1, 0)
+      },
+      {
+        direction: Direction.create("W"), from: Position.create(1, 0), to: Position.create(0, 0)
+      },
+      {
+        direction: Direction.create("S"), from: Position.create(0, 1), to: Position.create(0, 0)
+      }
+    ])("should move forward facing north by one cell", ({ direction, from, to }) => {
       const rover = new Robot({
-        direction: Direction.create("N"),
-        position: Position.create(0, 0),
+        surface,
+        direction,
+        position: from,
       });
       rover.move();
-      expect(rover["position"]).toEqual(Position.create(0, 1));
-    });
-
-    it("should move forward facing east by one cell", () => {
-      const rover = new Robot({
-        direction: Direction.create("E"),
-        position: Position.create(0, 0),
-      });
-      rover.move();
-      expect(rover["position"]).toEqual(Position.create(1, 0));
-    });
-
-    it("should move forward facing west by one cell", () => {
-      const rover = new Robot({
-        direction: Direction.create("W"),
-        position: Position.create(1, 0),
-      });
-      rover.move();
-      expect(rover["position"]).toEqual(Position.create(0, 0));
+      expect(rover["position"]).toEqual(to);
     });
   });
 
+  describe("Wrap", () => {
+    it("should wrap to opposite side facing a boundary of the surface", () => {
+      const rover = new Robot({
+        surface,
+        direction: Direction.create("W"),
+        position: Position.create(0, 0),
+      });
+      rover.move();
+      expect(rover["position"]).toEqual(Position.create(Surface.size, 0));
+    });
+  })
+
   describe("Turn left", () => {
+    const position = Position.create(0, 0);
+
     it.each<{ from: DirectionSide; to: DirectionSide }>([
       { from: "N", to: "W" },
       { from: "W", to: "S" },
@@ -48,8 +62,9 @@ describe("Mars rover", () => {
       { from: "E", to: "N" },
     ])("should turn left from $from to $to", ({ from, to }) => {
       const rover = new Robot({
+        surface,
         direction: Direction.create(from),
-        position: Position.create(0, 0),
+        position,
       });
       rover.turnLeft();
 
@@ -58,6 +73,7 @@ describe("Mars rover", () => {
   });
 
   describe("Turn Right", () => {
+    const position = Position.create(0, 0);
     it.each<{ from: DirectionSide; to: DirectionSide }>([
       { from: "N", to: "E" },
       { from: "E", to: "S" },
@@ -65,8 +81,9 @@ describe("Mars rover", () => {
       { from: "W", to: "N" },
     ])("should turn right from $from to $to", ({ from, to }) => {
       const rover = new Robot({
+        surface,
         direction: Direction.create(from),
-        position: Position.create(0, 0),
+        position
       });
       rover.turnRight();
 

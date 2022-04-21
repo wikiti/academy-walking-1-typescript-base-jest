@@ -20,4 +20,8 @@ export class Position {
   right() {
     return Position.create(this.X + 1, this.Y);
   }
+
+  left() {
+    return Position.create(this.X - 1, this.Y);
+  }
 }

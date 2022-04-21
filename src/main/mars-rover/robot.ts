@@ -1,14 +1,18 @@
 import { Direction } from "./direction";
 import { Position } from "./position";
+import { Surface } from "./surface";
 type Options = {
+  surface: Surface;
   direction: Direction;
   position: Position;
 };
 export class Robot {
+  private surface: Surface;
   private direction: Direction;
   private position: Position;
 
   constructor(options: Options) {
+    this.surface = options.surface;
     this.direction = options.direction;
     this.position = options.position;
   }
@@ -22,11 +26,6 @@ export class Robot {
   }
 
   move() {
-    if (this.direction.isEqual(Direction.create("N"))) {
-      this.position = this.position.top();
-      return;
-    }
-
-    this.position = this.position.right();
+    this.position = this.surface.next(this.position, this.direction);
   }
 }
