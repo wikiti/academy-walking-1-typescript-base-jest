@@ -12,6 +12,12 @@ export class Surface {
     if (yPosition < 0) {
       yPosition += Surface.size;
     }
+    if (xPosition > Surface.size - 1) {
+      xPosition -= Surface.size;
+    }
+    if (yPosition > Surface.size - 1) {
+      yPosition -= Surface.size;
+    }
     return Position.create(xPosition, yPosition);
   }
 
