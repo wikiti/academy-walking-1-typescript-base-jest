@@ -6,12 +6,22 @@ describe("Mars rover", () => {
     expect(rover["direction"]).toEqual("N");
   });
 
-  it("should turn to the left", () => {
-    const rover = new Robot("N");
-    rover.turnLeft();
+  describe("Turn left", () => {
+    it("should turn to the left", () => {
+      const rover = new Robot("N");
+      rover.turnLeft();
 
-    expect(rover["direction"]).toEqual("W");
+      expect(rover["direction"]).toEqual("W");
+    });
+
+    it("should turn left from west to south", () => {
+      const rover = new Robot("W");
+      rover.turnLeft();
+
+      expect(rover["direction"]).toEqual("S");
+    });
   });
+
 
   it("should turn to the right", () => {
     const rover = new Robot("N");

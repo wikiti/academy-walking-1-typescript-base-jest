@@ -10,4 +10,8 @@ export class Robot {
   turnLeft() {
     this.direction = "W";
   }
+
+  turnRight() {
+    this.direction = "E";
+  }
 }
