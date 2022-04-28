@@ -4,21 +4,21 @@ import { Position } from "./position";
 export class Surface {
   next(position: Position, direction: Direction) {
     const [xShift, yShift] = Surface.map[direction.current()];
-    let xPosition = position.x() + xShift;
-    let yPosition = position.y() + yShift;
-    if (xPosition < 0) {
-      xPosition += Surface.size;
-    }
-    if (yPosition < 0) {
-      yPosition += Surface.size;
-    }
-    if (xPosition > Surface.size - 1) {
-      xPosition -= Surface.size;
-    }
-    if (yPosition > Surface.size - 1) {
-      yPosition -= Surface.size;
-    }
+    let xPosition = this.wrap(position.x() + xShift);
+    let yPosition = this.wrap(position.y() + yShift);
+
     return Position.create(xPosition, yPosition);
+  }
+
+  private wrap(value: number) {
+    if (value < 0) {
+      return value + Surface.size;
+    }
+    if (value > Surface.size - 1) {
+      return value - Surface.size;
+    }
+
+    return value;
   }
 
   static map = {

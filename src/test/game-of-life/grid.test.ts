@@ -9,14 +9,14 @@ describe("Grid", () => {
     expect(cells.length).toEqual(16);
   });
 
-  it("should be able to seed the grid", () => {
-    const grid = new Grid(1, 2);
-    grid.seed([[State.Alive, State.Dead]]);
+  // it("should be able to seed the grid", () => {
+  //   const grid = new Grid(1, 2);
+  //   grid.seed([[State.Alive, State.Dead]]);
 
-    const firstCell = grid["cells"][0][0];
-    const secondCell = grid["cells"][0][1];
+  //   const firstCell = grid["cells"][0][0];
+  //   const secondCell = grid["cells"][0][1];
 
-    expect(firstCell.isAlive()).toEqual(true);
-    expect(secondCell.isAlive()).toEqual(false);
-  });
+  //   expect(firstCell.isAlive()).toEqual(true);
+  //   expect(secondCell.isAlive()).toEqual(false);
+  // });
 });
