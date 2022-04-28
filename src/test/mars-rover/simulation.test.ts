@@ -9,6 +9,11 @@ describe("Simulation", () => {
   it("simulates rotating once to the left", () => {
     const simulation = new Simulation("L");
 
+    expect(simulation.simulate()).toEqual("0:0:W");
+  });
+
+  it("simulates rotating twice to the right", () => {
+    const simulation = new Simulation("R");
     expect(simulation.simulate()).toEqual("0:0:E");
   });
 });
