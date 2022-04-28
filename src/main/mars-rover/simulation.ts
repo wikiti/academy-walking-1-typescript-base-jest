@@ -32,36 +32,41 @@ class MoveForwardCommand extends Command {
 }
 
 export class Simulation {
-  private input: string;
+  private commands: Command[];
   private robot: Robot;
 
   constructor(input: string) {
-    this.input = input;
-
     this.robot = new Robot({
       surface: new Surface(),
       direction: Direction.create("N"),
       position: Position.create(0, 0),
     });
+    this.commands = Simulation.inputToCommands(input, this.robot);
   }
 
   simulate() {
-    if (this.input === "L") {
-      new TurnLeftCommand(this.robot).execute();
-    }
-    if (this.input === "R") {
-      new TurnRightCommand(this.robot).execute();
-    }
-    if (this.input === "M") {
-      new MoveForwardCommand(this.robot).execute();
-    }
-
+    this.commands.forEach((command) => command.execute());
     return this.outcome();
   }
 
   private outcome() {
     const currentOrientation = this.robot.orientation();
     const currentPosition = this.robot.currentPosition();
-    return `0:${currentPosition.y()}:${currentOrientation.current()}`;
+    return `${currentPosition.x()}:${currentPosition.y()}:${currentOrientation.current()}`;
+  }
+
+  static inputToCommands(input: string, robot: Robot) {
+    return input.split("").map((i) => {
+      if (i === "L") {
+        return new TurnLeftCommand(robot);
+      }
+      if (i === "R") {
+        return new TurnRightCommand(robot);
+      }
+      if (i === "M") {
+        return new MoveForwardCommand(robot);
+      }
+      throw new Error("UnknownCommand");
+    });
   }
 }
