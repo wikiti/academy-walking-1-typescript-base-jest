@@ -33,4 +33,7 @@ export class Robot {
   orientation(): Direction {
     return this.direction;
   }
+  currentPosition(): Position {
+    return this.position;
+  }
 }

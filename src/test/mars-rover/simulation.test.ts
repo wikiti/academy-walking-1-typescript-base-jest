@@ -21,4 +21,9 @@ describe("Simulation", () => {
     const simulation = new Simulation("M");
     expect(simulation.simulate()).toEqual("0:1:N");
   });
+
+  it("simulates moving once cell forward while facing east", () => {
+    const simulation = new Simulation("RM");
+    expect(simulation.simulate()).toEqual("1:0:E");
+  });
 });

@@ -25,6 +25,12 @@ class TurnRightCommand extends Command {
   }
 }
 
+class MoveForwardCommand extends Command {
+  public execute() {
+    this.robot.move();
+  }
+}
+
 export class Simulation {
   private input: string;
   private robot: Robot;
@@ -46,12 +52,16 @@ export class Simulation {
     if (this.input === "R") {
       new TurnRightCommand(this.robot).execute();
     }
+    if (this.input === "M") {
+      new MoveForwardCommand(this.robot).execute();
+    }
 
     return this.outcome();
   }
 
   private outcome() {
     const currentOrientation = this.robot.orientation();
-    return `0:0:${currentOrientation.current()}`;
+    const currentPosition = this.robot.currentPosition();
+    return `0:${currentPosition.y()}:${currentOrientation.current()}`;
   }
 }
