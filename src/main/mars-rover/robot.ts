@@ -1,3 +1,4 @@
+import { Dir } from "fs";
 import { Direction } from "./direction";
 import { Position } from "./position";
 import { Surface } from "./surface";
@@ -27,5 +28,9 @@ export class Robot {
 
   move() {
     this.position = this.surface.next(this.position, this.direction);
+  }
+
+  orientation(): Direction {
+    return this.direction;
   }
 }

@@ -12,8 +12,13 @@ describe("Simulation", () => {
     expect(simulation.simulate()).toEqual("0:0:W");
   });
 
-  it("simulates rotating twice to the right", () => {
+  it("simulates rotating once to the right", () => {
     const simulation = new Simulation("R");
     expect(simulation.simulate()).toEqual("0:0:E");
+  });
+
+  it("simulates moving once cell forward", () => {
+    const simulation = new Simulation("M");
+    expect(simulation.simulate()).toEqual("0:1:N");
   });
 });
