@@ -1,3 +1,4 @@
+import MockDate from "mockdate";
 import { AccountService, IBalance } from "./AccountService";
 
 describe("AcceptanceTest", () => {
@@ -18,6 +19,7 @@ describe("AccountService", () => {
   let balance: IBalance;
 
   beforeEach(() => {
+    MockDate.set("2012-01-10T14:14:29.963Z");
     const balanceHistory = [] as any;
     balance = {
       increase: jest.fn().mockImplementation((amount: number) => {
@@ -40,7 +42,7 @@ describe("AccountService", () => {
 
       it("Should record the date of increase", () => {
         sut.deposit(1000);
-        expect(balance.history).toEqual([["2022-05-19", 1000]]);
+        expect(balance.history).toEqual([["2012-01-10", 1000]]);
       });
     });
   });
