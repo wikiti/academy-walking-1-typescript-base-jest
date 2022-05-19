@@ -6,18 +6,30 @@ export interface IAccountService {
 
 export interface IBalance {
   increase: (amount: number) => void;
-  history: [string, number][];
+  decrease: (amount: number) => void;
+  generateStatement: () => string;
+  history: [string, number, number][];
+}
+
+export interface ILogger {
+  log: (info: string) => void;
 }
 
 export class AccountService implements IAccountService {
   balance: IBalance;
+  logSpy: ILogger;
 
-  constructor({ balance }: { balance: IBalance }) {
+  constructor({ balance, logSpy }: { balance: IBalance; logSpy: ILogger }) {
     this.balance = balance;
+    this.logSpy = logSpy;
   }
   deposit(amount: number) {
     this.balance.increase(amount);
   }
-  withdraw(amount: number) {}
-  printStatement() {}
+  withdraw(amount: number) {
+    this.balance.decrease(amount);
+  }
+  printStatement() {
+    this.logSpy.log(this.balance.generateStatement());
+  }
 }
