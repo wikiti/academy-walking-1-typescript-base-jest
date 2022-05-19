@@ -6,6 +6,7 @@ export interface IAccountService {
 
 export interface IBalance {
   increase: (amount: number) => void;
+  history: [string, number][];
 }
 
 export class AccountService implements IAccountService {

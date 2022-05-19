@@ -18,8 +18,13 @@ describe("AccountService", () => {
   let balance: IBalance;
 
   beforeEach(() => {
+    const balanceHistory = [] as any;
     balance = {
-      increase: jest.fn(),
+      increase: jest.fn().mockImplementation((amount: number) => {
+        const date = new Date();
+        balanceHistory.push([`${date.toISOString().split("T")[0]}`, amount]);
+      }),
+      history: balanceHistory,
     };
     sut = new AccountService({
       balance,
@@ -32,6 +37,15 @@ describe("AccountService", () => {
         sut.deposit(1000);
         expect(balance.increase).toBeCalledWith(1000);
       });
+
+      it("Should record the date of increase", () => {
+        sut.deposit(1000);
+        expect(balance.history).toEqual([["2022-05-19", 1000]]);
+      });
     });
+  });
+
+  describe("printStatement", () => {
+    it.todo("Should print the bank statement");
   });
 });
