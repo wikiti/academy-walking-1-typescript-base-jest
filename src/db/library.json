@@ -1,0 +1,22 @@
+{
+  "10001": {
+    "Title": "The Lord of the Rings",
+    "Price": 10,
+    "Type": "Book"
+  },
+  "10002": {
+    "Title": "The Hobbit",
+    "Price": 5,
+    "Type": "Book"
+  },
+  "20001": {
+    "Title": "Game of Thrones",
+    "Price": 9,
+    "Type": "Movie"
+  },
+  "20110": {
+    "Title": "Breaking Bad",
+    "Price": 7,
+    "Type": "Movie"
+  }
+}

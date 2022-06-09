@@ -1,13 +1,15 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "strict": true,
-        "declaration":true,
-        "noImplicitAny": true,
-        "sourceMap": true,
-        "outDir": "./dist",
-    },
-    "include": ["src/**/*", "src/test/steps.js"],
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "strict": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*", "src/test/steps.js"],
+  "exclude": ["node_modules"]
 }
