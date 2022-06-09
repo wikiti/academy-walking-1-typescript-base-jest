@@ -10,6 +10,8 @@
     "test:watch-all": "jest --watchAll"
   },
   "dependencies": {
+    "@cucumber/cucumber": "^8.2.2",
+    "@types/cucumber": "^7.0.0",
     "@types/node": "^14.14.31",
     "deep-equal": "^2.0.5",
     "ts-node": "^9.1.1",
