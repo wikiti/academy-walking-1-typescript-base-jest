@@ -1,7 +1,7 @@
 module.exports = {
   roots: ["<rootDir>/src"],
   preset: "ts-jest",
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     "./src/**/*.{js,jsx,ts}",
     "!**/node_modules/**",
